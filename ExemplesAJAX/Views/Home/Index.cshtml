@@ -2,16 +2,48 @@
     ViewData["Title"] = "Home Page";
 }
 
-@section Scripts{
+@section Scripts {
     <script>
-        // TODO: Écrire votre script
+        // Chargement automatique de la première vue partielle
+        $.get("/Home/Partielle", function(data) {
+            $("#vuePartielle").html(data);
+        });
+
+        // Fonction appelée lorsqu'on clique sur le bouton
+        function afficherPartielle2() {
+
+            let data = {
+                qty: $("#qty").val(),
+                texte: $("#texte").val()
+            };
+
+            console.log(data);
+
+            $.get("/Home/Partielle2", data, function(result) {
+                $("#vuePartielle2").html(result);
+            });
+        }
     </script>
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <!--Utiliser ce div pour afficher la 1ere vue partielle-->
-    <div></div>
-    <!--Utiliser ce div pour afficher la 2e vue partielle-->
-    <div></div>
+
+    <!-- Première vue partielle -->
+    <div id="vuePartielle"></div>
+
+    <!-- Inputs -->
+    <div>
+        <input type="number" id="qty" placeholder="Quantité" />
+
+        <input type="text" id="texte" placeholder="Entrez un texte" />
+
+        <button type="button" onclick="afficherPartielle2()">
+            Afficher
+        </button>
+    </div>
+
+    <!-- Deuxième vue partielle -->
+    <div id="vuePartielle2"></div>
+
 </div>

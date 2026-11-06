@@ -20,6 +20,21 @@ namespace ExemplesAJAX.Controllers
             return View();
         }
 
+        public IActionResult Partielle()
+        {
+            return PartialView();
+        }
+
+        public IActionResult Afficher()
+        {
+            return PartialView("Partielle");
+        }
+
+        public IActionResult Partielle2(Partielle2DTO data)
+        {
+            return PartialView(data);
+        }
+
         public IActionResult Privacy()
         {
             return View();
